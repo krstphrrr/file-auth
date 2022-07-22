@@ -14,7 +14,11 @@ function App() {
   async function getProtectedRoute(){
     try{
       const token = await getAccessTokenSilently()
-      const response = await axios.get('http://localhost:5001/api/test/1', {
+      const response = await axios.put('http://localhost:5001/api/download-data',{
+        data: {
+          "primaryKeys": ["17101012114127892017-09-01"]
+        }
+      }, {
         headers:{
           authorization: `Bearer ${token}`
         }
@@ -30,7 +34,7 @@ function App() {
     return (<div className="App">
             <h1>User logged in </h1>
             <Button variant="text" onClick={getProtectedRoute}>
-              el fetch
+              Fetch
             </Button>
             <LogoutButton></LogoutButton>
 
